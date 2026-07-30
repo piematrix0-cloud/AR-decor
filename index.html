@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ============ ROOT VARIABLES ============ */
         :root {
             --gold: #c9a96e;
             --gold-light: #e0c78a;
@@ -19,8 +18,6 @@
             --text: #3d3730;
             --text-light: #6b6359;
             --white: #ffffff;
-            --glass: rgba(255,255,255,0.06);
-            --glass-border: rgba(255,255,255,0.12);
             --shadow-sm: 0 4px 20px rgba(0,0,0,0.06);
             --shadow-md: 0 12px 40px rgba(0,0,0,0.1);
             --shadow-lg: 0 25px 60px rgba(0,0,0,0.18);
@@ -34,283 +31,153 @@
         html { scroll-behavior:smooth; font-size:16px; }
         body { font-family:var(--font-body); color:var(--text); background:var(--cream); line-height:1.7; overflow-x:hidden; }
 
-        /* ============ PRELOADER ============ */
-        .preloader {
-            position:fixed; inset:0; background:var(--dark); z-index:9999; display:flex;
-            align-items:center; justify-content:center; transition:opacity 0.8s ease, visibility 0.8s ease;
-        }
+        /* Preloader */
+        .preloader { position:fixed; inset:0; background:var(--dark); z-index:9999; display:flex; align-items:center; justify-content:center; transition:opacity 0.8s ease, visibility 0.8s ease; }
         .preloader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
         .preloader-content { text-align:center; }
         .preloader-svg { width:120px; height:120px; display:block; margin:0 auto 1.5rem; }
-        .preloader-svg .ring {
-            fill:none; stroke:var(--gold); stroke-width:3; stroke-dasharray:283;
-            stroke-dashoffset:283; animation:drawRing 1.5s ease forwards;
-        }
+        .preloader-svg .ring { fill:none; stroke:var(--gold); stroke-width:3; stroke-dasharray:283; stroke-dashoffset:283; animation:drawRing 1.5s ease forwards; }
         @keyframes drawRing { to { stroke-dashoffset:0; } }
-        .preloader-logo-text {
-            font-family:var(--font-heading); font-size:2.5rem; color:var(--gold);
-            letter-spacing:8px; opacity:0; animation:fadeInText 0.8s ease 0.5s forwards;
-        }
+        .preloader-logo-text { font-family:var(--font-heading); font-size:2.5rem; color:var(--gold); letter-spacing:8px; opacity:0; animation:fadeInText 0.8s ease 0.5s forwards; }
         @keyframes fadeInText { to { opacity:1; } }
 
-        /* ============ NAVIGATION ============ */
-        .navbar {
-            position:fixed; top:0; left:0; width:100%; z-index:1000; padding:1.2rem 3rem;
-            display:flex; align-items:center; justify-content:space-between;
-            transition:all var(--transition); background:transparent;
-        }
-        .navbar.scrolled {
-            background:rgba(10,10,10,0.85); backdrop-filter:blur(30px);
-            padding:0.8rem 3rem; box-shadow:0 2px 30px rgba(0,0,0,0.3);
-        }
-        .nav-logo {
-            font-family:var(--font-heading); font-size:1.8rem; font-weight:bold;
-            color:var(--white); letter-spacing:4px; text-decoration:none; z-index:1001;
-        }
+        /* Navigation */
+        .navbar { position:fixed; top:0; left:0; width:100%; z-index:1000; padding:1.2rem 3rem; display:flex; align-items:center; justify-content:space-between; transition:all var(--transition); background:transparent; }
+        .navbar.scrolled { background:rgba(10,10,10,0.85); backdrop-filter:blur(30px); padding:0.8rem 3rem; box-shadow:0 2px 30px rgba(0,0,0,0.3); }
+        .nav-logo { font-family:var(--font-heading); font-size:1.8rem; font-weight:bold; color:var(--white); letter-spacing:4px; text-decoration:none; z-index:1001; }
         .nav-logo span { color:var(--gold); }
         .nav-links { display:flex; list-style:none; gap:2.5rem; align-items:center; }
-        .nav-links a {
-            text-decoration:none; color:rgba(255,255,255,0.9); font-weight:500;
-            font-size:0.9rem; letter-spacing:1.5px; text-transform:uppercase;
-            position:relative; transition:color var(--transition);
-        }
-        .nav-links a::after {
-            content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px;
-            background:var(--gold); transition:width var(--transition);
-        }
+        .nav-links a { text-decoration:none; color:rgba(255,255,255,0.9); font-weight:500; font-size:0.9rem; letter-spacing:1.5px; text-transform:uppercase; position:relative; transition:color var(--transition); }
+        .nav-links a::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:var(--gold); transition:width var(--transition); }
         .nav-links a:hover { color:var(--gold-light); }
         .nav-links a:hover::after { width:100%; }
-        .nav-cta {
-            background:var(--gold); color:var(--dark)!important; padding:0.7rem 2rem!important;
-            border-radius:50px; font-weight:600!important; letter-spacing:1px;
-            transition:all var(--transition); border:none;
-        }
-        .nav-cta:hover {
-            background:transparent!important; color:var(--gold)!important;
-            box-shadow:0 0 35px rgba(201,169,110,0.5); transform:translateY(-2px);
-        }
+        .nav-cta { background:var(--gold); color:var(--dark)!important; padding:0.7rem 2rem!important; border-radius:50px; font-weight:600!important; letter-spacing:1px; transition:all var(--transition); border:none; }
+        .nav-cta:hover { background:transparent!important; color:var(--gold)!important; box-shadow:0 0 35px rgba(201,169,110,0.5); transform:translateY(-2px); }
         .hamburger { display:none; flex-direction:column; cursor:pointer; gap:6px; z-index:1001; }
-        .hamburger span {
-            width:30px; height:2.5px; background:var(--white); border-radius:3px;
-            transition:all var(--transition);
-        }
+        .hamburger span { width:30px; height:2.5px; background:var(--white); border-radius:3px; transition:all var(--transition); }
         .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(7px,7px); }
         .hamburger.active span:nth-child(2) { opacity:0; }
         .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(7px,-7px); }
 
-        /* ============ HERO ============ */
-        .hero {
-            position:relative; min-height:100vh; display:flex; align-items:center;
-            justify-content:center; background:radial-gradient(ellipse at center, #2a2218 0%, #0f0c08 70%);
-            overflow:hidden;
-        }
+        /* Hero */
+        .hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; background:radial-gradient(ellipse at center, #2a2218 0%, #0f0c08 70%); overflow:hidden; }
         .particle-grid { position:absolute; inset:0; z-index:0; }
         .hero-content { position:relative; z-index:2; text-align:center; max-width:950px; padding:2rem; }
-        .hero-subtitle {
-            color:var(--gold); letter-spacing:5px; text-transform:uppercase; font-size:0.9rem;
-            margin-bottom:2rem; opacity:0; animation:fadeUp 1s ease forwards;
-        }
-        .hero-title {
-            font-family:var(--font-heading); font-size:clamp(3.5rem, 8vw, 6.5rem);
-            color:var(--white); line-height:1.1; margin-bottom:2rem; font-weight:400;
-        }
+        .hero-subtitle { color:var(--gold); letter-spacing:5px; text-transform:uppercase; font-size:0.9rem; margin-bottom:2rem; opacity:0; animation:fadeUp 1s ease forwards; }
+        .hero-title { font-family:var(--font-heading); font-size:clamp(3.5rem, 8vw, 6.5rem); color:var(--white); line-height:1.1; margin-bottom:2rem; font-weight:400; }
         .char { display:inline-block; opacity:0; animation:fadeUpChar 0.8s ease forwards; }
         .hero-title .word { display:inline-block; }
         .hero-title .word.gold { color:var(--gold); font-style:italic; }
-        .hero-desc {
-            color:rgba(255,255,255,0.75); font-size:1.2rem; max-width:650px;
-            margin:0 auto 2.8rem; opacity:0; animation:fadeUp 1s ease 0.6s forwards;
-        }
-        .hero-buttons {
-            display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap;
-            opacity:0; animation:fadeUp 1s ease 0.8s forwards;
-        }
+        .hero-desc { color:rgba(255,255,255,0.75); font-size:1.2rem; max-width:650px; margin:0 auto 2.8rem; opacity:0; animation:fadeUp 1s ease 0.6s forwards; }
+        .hero-buttons { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; opacity:0; animation:fadeUp 1s ease 0.8s forwards; }
         @keyframes fadeUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
-        @keyframes fadeUpChar {
-            from{opacity:0;transform:translateY(60px) rotateX(-90deg);}
-            to{opacity:1;transform:translateY(0) rotateX(0);}
-        }
-        .btn {
-            display:inline-block; padding:1rem 2.8rem; border-radius:60px; text-decoration:none;
-            font-weight:600; letter-spacing:1.5px; text-transform:uppercase; font-size:0.95rem;
-            transition:all 0.5s ease; cursor:pointer; font-family:var(--font-body);
-        }
-        .btn-primary {
-            background:var(--gold); color:var(--dark); border:2px solid var(--gold);
-            box-shadow:0 10px 35px rgba(201,169,110,0.4);
-        }
-        .btn-primary:hover {
-            background:transparent; color:var(--gold); transform:translateY(-5px);
-            box-shadow:0 20px 50px rgba(201,169,110,0.6);
-        }
-        .btn-outline {
-            background:transparent; color:var(--white); border:2px solid rgba(255,255,255,0.35);
-        }
-        .btn-outline:hover {
-            border-color:var(--gold); color:var(--gold); transform:translateY(-5px);
-        }
-        .hero-scroll {
-            position:absolute; bottom:3rem; left:50%; transform:translateX(-50%);
-            z-index:2; cursor:pointer; animation:float 2.5s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%,100%{transform:translateX(-50%) translateY(0);}
-            50%{transform:translateX(-50%) translateY(15px);}
-        }
+        @keyframes fadeUpChar { from{opacity:0;transform:translateY(60px) rotateX(-90deg);} to{opacity:1;transform:translateY(0) rotateX(0);} }
+        .btn { display:inline-block; padding:1rem 2.8rem; border-radius:60px; text-decoration:none; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; font-size:0.95rem; transition:all 0.5s ease; cursor:pointer; font-family:var(--font-body); }
+        .btn-primary { background:var(--gold); color:var(--dark); border:2px solid var(--gold); box-shadow:0 10px 35px rgba(201,169,110,0.4); }
+        .btn-primary:hover { background:transparent; color:var(--gold); transform:translateY(-5px); box-shadow:0 20px 50px rgba(201,169,110,0.6); }
+        .btn-outline { background:transparent; color:var(--white); border:2px solid rgba(255,255,255,0.35); }
+        .btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-5px); }
+        .hero-scroll { position:absolute; bottom:3rem; left:50%; transform:translateX(-50%); z-index:2; cursor:pointer; animation:float 2.5s ease-in-out infinite; }
+        @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(15px);} }
 
-        /* ============ SECTIONS ============ */
+        /* Sections */
         section { padding:8rem 3rem; position:relative; overflow:hidden; }
-        .section-tag {
-            color:var(--gold-dark); letter-spacing:4px; text-transform:uppercase;
-            font-size:0.85rem; font-weight:600; margin-bottom:1.2rem;
-        }
-        .section-title {
-            font-family:var(--font-heading); font-size:clamp(2.5rem, 5vw, 3.8rem);
-            color:var(--dark); line-height:1.2; margin-bottom:1rem; font-weight:400;
-        }
+        .section-tag { color:var(--gold-dark); letter-spacing:4px; text-transform:uppercase; font-size:0.85rem; font-weight:600; margin-bottom:1.2rem; }
+        .section-title { font-family:var(--font-heading); font-size:clamp(2.5rem, 5vw, 3.8rem); color:var(--dark); line-height:1.2; margin-bottom:1rem; font-weight:400; }
         .section-title span { color:var(--gold-dark); font-style:italic; }
         .section-line { width:70px; height:3px; background:var(--gold); margin:2rem auto; border-radius:3px; }
         .section-desc { color:var(--text-light); max-width:650px; margin:0 auto; font-size:1.1rem; }
-        .reveal {
-            opacity:0; transform:translateY(70px);
-            transition:opacity 0.9s cubic-bezier(0.23,1,0.32,1), transform 0.9s cubic-bezier(0.23,1,0.32,1);
-        }
+        .reveal { opacity:0; transform:translateY(70px); transition:opacity 0.9s cubic-bezier(0.23,1,0.32,1), transform 0.9s cubic-bezier(0.23,1,0.32,1); }
         .reveal.visible { opacity:1; transform:translateY(0); }
 
         /* Services */
-        .services-grid {
-            display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-            gap:2.5rem; max-width:1300px; margin:0 auto;
-        }
-        .service-card {
-            background:var(--white); border-radius:var(--radius); overflow:hidden;
-            box-shadow:var(--shadow-md); transition:all 0.6s ease;
-            transform-style:preserve-3d; perspective:1000px; cursor:pointer;
-        }
-        .service-card:hover {
-            transform:translateY(-15px) rotateX(3deg) rotateY(3deg); box-shadow:var(--shadow-lg);
-        }
+        .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2.5rem; max-width:1300px; margin:0 auto; }
+        .service-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-md); transition:all 0.6s ease; transform-style:preserve-3d; perspective:1000px; cursor:pointer; }
+        .service-card:hover { transform:translateY(-15px) rotateX(3deg) rotateY(3deg); box-shadow:var(--shadow-lg); }
         .service-card-image { height:280px; overflow:hidden; }
-        .img-placeholder {
-            width:100%; height:100%; display:flex; align-items:center; justify-content:center;
-            font-size:5rem; background:linear-gradient(135deg, #f5f0e8, #e8dfd3);
-            transition:transform 0.7s ease;
-        }
+        .img-placeholder { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:5rem; background:linear-gradient(135deg, #f5f0e8, #e8dfd3); transition:transform 0.7s ease; }
         .service-card:hover .img-placeholder { transform:scale(1.1); }
         .service-card-body { padding:2.5rem; }
         .service-card h3 { font-family:var(--font-heading); font-size:1.8rem; color:var(--dark); margin-bottom:1rem; }
 
         /* Portfolio */
-        .portfolio-grid {
-            display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-            gap:1.8rem; max-width:1300px; margin:0 auto;
-        }
-        .portfolio-item {
-            position:relative; border-radius:var(--radius-sm); overflow:hidden; cursor:pointer;
-            aspect-ratio:4/3; box-shadow:var(--shadow-md); transition:all 0.5s ease;
-            transform-style:preserve-3d;
-        }
+        .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.8rem; max-width:1300px; margin:0 auto; }
+        .portfolio-item { position:relative; border-radius:var(--radius-sm); overflow:hidden; cursor:pointer; aspect-ratio:4/3; box-shadow:var(--shadow-md); transition:all 0.5s ease; transform-style:preserve-3d; }
         .portfolio-item:hover { transform:translateY(-10px) rotateX(5deg); box-shadow:var(--shadow-lg); }
         .portfolio-img { width:100%; height:100%; background-size:cover; transition:transform 0.7s ease; }
         .portfolio-item:hover .portfolio-img { transform:scale(1.08); }
-        .portfolio-overlay {
-            position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            display:flex; flex-direction:column; justify-content:flex-end; padding:2rem;
-            opacity:0; transition:opacity 0.4s;
-        }
+        .portfolio-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent); display:flex; flex-direction:column; justify-content:flex-end; padding:2rem; opacity:0; transition:opacity 0.4s; }
         .portfolio-item:hover .portfolio-overlay { opacity:1; }
         .portfolio-overlay h4 { color:var(--white); font-family:var(--font-heading); font-size:1.6rem; }
 
         /* Lightbox */
-        .lightbox {
-            position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:2000;
-            display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden;
-            transition:opacity 0.4s, visibility 0.4s;
-        }
+        .lightbox { position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:2000; display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transition:opacity 0.4s, visibility 0.4s; }
         .lightbox.active { opacity:1; visibility:visible; }
-        .lightbox-content {
-            max-width:80vw; max-height:80vh; border-radius:var(--radius);
-            background:var(--dark-soft); padding:3rem; text-align:center; color:var(--white);
-            box-shadow:0 0 100px rgba(0,0,0,0.5);
-        }
-        .lightbox-close {
-            position:absolute; top:2rem; right:2rem; color:var(--gold); font-size:2.5rem;
-            cursor:pointer; z-index:2001;
-        }
+        .lightbox-content { max-width:80vw; max-height:80vh; border-radius:var(--radius); background:var(--dark-soft); padding:3rem; text-align:center; color:var(--white); box-shadow:0 0 100px rgba(0,0,0,0.5); }
+        .lightbox-close { position:absolute; top:2rem; right:2rem; color:var(--gold); font-size:2.5rem; cursor:pointer; z-index:2001; }
 
         /* About & Timeline */
         .about-container { display:flex; align-items:center; gap:5rem; max-width:1300px; margin:0 auto; flex-wrap:wrap; }
-        .about-image {
-            flex:1 1 400px; min-height:500px; border-radius:var(--radius);
-            background:linear-gradient(135deg, #e8ddd0 0%, #d5c8b5 50%, #c4b5a0 100%);
-            box-shadow:var(--shadow-lg); transition:transform 0.5s;
-        }
+        .about-image { flex:1 1 400px; min-height:500px; border-radius:var(--radius); background:linear-gradient(135deg, #e8ddd0 0%, #d5c8b5 50%, #c4b5a0 100%); box-shadow:var(--shadow-lg); transition:transform 0.5s; }
         .about-image:hover { transform:scale(1.02); }
         .timeline { display:flex; flex-direction:column; gap:2.5rem; margin-top:3rem; }
         .timeline-item { display:flex; gap:2rem; align-items:flex-start; }
-        .timeline-year {
-            font-family:var(--font-heading); font-size:2.2rem; color:var(--gold);
-            min-width:80px; font-weight:600;
-        }
+        .timeline-year { font-family:var(--font-heading); font-size:2.2rem; color:var(--gold); min-width:80px; font-weight:600; }
         .counter { font-family:var(--font-heading); font-size:3.5rem; color:var(--gold-dark); display:inline-block; }
         .counter-label { text-transform:uppercase; letter-spacing:3px; font-size:0.85rem; color:var(--text-light); display:block; }
 
-        /* Team Section */
-        .team-grid {
-            display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:2.5rem; max-width:1100px; margin:0 auto;
-        }
+        /* Team */
+        .team-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2.5rem; max-width:1100px; margin:0 auto; }
         .team-member { text-align:center; }
-        .team-avatar {
-            width:180px; height:180px; border-radius:50%; margin:0 auto 1.5rem;
-            background:linear-gradient(135deg, #e8ddd0, #d5c8b5);
-            display:flex; align-items:center; justify-content:center; font-size:3rem;
-        }
+        .team-avatar { width:180px; height:180px; border-radius:50%; margin:0 auto 1.5rem; background:linear-gradient(135deg, #e8ddd0, #d5c8b5); display:flex; align-items:center; justify-content:center; font-size:3rem; }
         .team-member h3 { font-family:var(--font-heading); color:var(--dark); margin-bottom:0.3rem; }
 
         /* Process */
-        .process-grid {
-            display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-            gap:2rem; max-width:1100px; margin:0 auto;
-        }
-        .process-step {
-            background:var(--white); border-radius:var(--radius-sm); padding:3rem 2rem;
-            text-align:center; box-shadow:var(--shadow-sm); transition:all 0.4s ease;
-        }
+        .process-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2rem; max-width:1100px; margin:0 auto; }
+        .process-step { background:var(--white); border-radius:var(--radius-sm); padding:3rem 2rem; text-align:center; box-shadow:var(--shadow-sm); transition:all 0.4s ease; }
         .process-step:hover { transform:translateY(-10px); box-shadow:var(--shadow-md); }
         .process-number { font-family:var(--font-heading); font-size:4rem; color:var(--gold); line-height:1; }
 
         /* Pricing */
-        .pricing-grid {
-            display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-            gap:2rem; max-width:1100px; margin:0 auto;
-        }
-        .pricing-card {
-            background:var(--white); border-radius:var(--radius); padding:3rem 2rem;
-            box-shadow:var(--shadow-md); text-align:center; transition:0.4s;
-        }
+        .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; max-width:1100px; margin:0 auto; }
+        .pricing-card { background:var(--white); border-radius:var(--radius); padding:3rem 2rem; box-shadow:var(--shadow-md); text-align:center; transition:0.4s; }
         .pricing-card.featured { border:2px solid var(--gold); transform:scale(1.05); }
         .pricing-card:hover { transform:translateY(-12px); }
         .price { font-family:var(--font-heading); font-size:3rem; color:var(--gold-dark); margin:1.5rem 0; }
 
         /* FAQ */
         .faq-item { border-bottom:1px solid #ddd; margin-bottom:1rem; }
-        .faq-question {
-            padding:1.5rem 0; font-weight:600; cursor:pointer;
-            display:flex; justify-content:space-between; align-items:center;
-        }
+        .faq-question { padding:1.5rem 0; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
         .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.5s ease; padding:0 1rem; }
         .faq-item.active .faq-answer { max-height:300px; padding-bottom:1.5rem; }
 
-        /* Blog Cards */
-        .blog-grid {
-            display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-            gap:2rem; max-width:1300px; margin:0 auto;
-        }
+        /* Blog */
+        .blog-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; max-width:1300px; margin:0 auto; }
         .blog-card { background:var(--white); border-radius:var(--radius-sm); overflow:hidden; box-shadow:var(--shadow-sm); transition:0.3s; }
         .blog-card:hover { transform:translateY(-8px); }
         .blog-img { height:200px; background:linear-gradient(135deg, #f5f0e8, #e8dfd3); display:flex; align-items:center; justify-content:center; font-size:3rem; }
         .blog-body { padding:1.8rem; }
+
+        /* Contact Form */
+        .contact-form { background:var(--white); padding:3rem; border-radius:var(--radius); box-shadow:var(--shadow-lg); transition:box-shadow 0.4s ease; }
+        .contact-form:hover { box-shadow:0 30px 70px rgba(0,0,0,0.12); }
+        .contact-form input, .contact-form textarea, .contact-form select {
+            width:100%; padding:1rem 1.4rem; margin-bottom:1.5rem; border:2px solid #e8e4dc;
+            border-radius:var(--radius-sm); background:var(--cream); font-family:var(--font-body);
+            font-size:1rem; color:var(--text); transition:all 0.3s ease; outline:none;
+        }
+        .contact-form select {
+            appearance:none;
+            background-image:url("data:image/svg+xml;utf8,<svg fill='%236b6359' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat:no-repeat; background-position:right 1rem center; background-size:1.2rem;
+        }
+        .contact-form textarea { min-height:150px; resize:vertical; }
+        .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+            border-color:var(--gold); box-shadow:0 0 0 4px rgba(201,169,110,0.1); background:var(--white);
+        }
+        .contact-form .btn-primary { width:100%; padding:1rem; font-size:1rem; letter-spacing:1px; }
+        .contact-map { margin-top:2rem; border-radius:var(--radius-sm); overflow:hidden; box-shadow:var(--shadow-sm); }
+        .contact-map iframe { width:100%; height:200px; border:none; }
 
         /* Footer */
         footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:5rem 3rem 2rem; }
@@ -319,28 +186,14 @@
         .footer-grid a { color:rgba(255,255,255,0.5); text-decoration:none; display:block; margin-bottom:0.7rem; transition:color 0.3s; }
         .footer-grid a:hover { color:var(--gold); }
 
-        /* Back to top & Progress Ring */
-        .back-to-top {
-            position:fixed; bottom:3rem; right:3rem; width:60px; height:60px; border-radius:50%;
-            background:var(--gold); color:var(--dark); border:none; cursor:pointer; z-index:999;
-            font-size:1.5rem; opacity:0; visibility:hidden; transition:all 0.4s;
-            box-shadow:0 10px 30px rgba(201,169,110,0.5);
-            display:flex; align-items:center; justify-content:center;
-        }
+        /* Back to top */
+        .back-to-top { position:fixed; bottom:3rem; right:3rem; width:60px; height:60px; border-radius:50%; background:var(--gold); color:var(--dark); border:none; cursor:pointer; z-index:999; font-size:1.5rem; opacity:0; visibility:hidden; transition:all 0.4s; box-shadow:0 10px 30px rgba(201,169,110,0.5); display:flex; align-items:center; justify-content:center; }
         .back-to-top.visible { opacity:1; visibility:visible; transform:translateY(0); }
         .progress-ring { position:absolute; top:-4px; left:-4px; width:68px; height:68px; }
-        .progress-ring circle {
-            fill:none; stroke:var(--gold-dark); stroke-width:3;
-            stroke-dasharray:201; stroke-dashoffset:201; transition:stroke-dashoffset 0.1s linear;
-        }
+        .progress-ring circle { fill:none; stroke:var(--gold-dark); stroke-width:3; stroke-dasharray:201; stroke-dashoffset:201; transition:stroke-dashoffset 0.1s linear; }
 
-        /* Responsive */
         @media (max-width:768px) {
-            .nav-links {
-                position:fixed; top:0; right:-100%; width:280px; height:100vh;
-                background:rgba(10,10,10,0.95); backdrop-filter:blur(20px);
-                flex-direction:column; justify-content:center; gap:2rem; transition:right var(--transition);
-            }
+            .nav-links { position:fixed; top:0; right:-100%; width:280px; height:100vh; background:rgba(10,10,10,0.95); backdrop-filter:blur(20px); flex-direction:column; justify-content:center; gap:2rem; transition:right var(--transition); }
             .nav-links.active { right:0; }
             .hamburger { display:flex; }
             section { padding:5rem 1.5rem; }
@@ -348,17 +201,13 @@
     </style>
 </head>
 <body>
-    <!-- ============ PRELOADER ============ -->
     <div class="preloader" id="preloader">
         <div class="preloader-content">
-            <svg class="preloader-svg" viewBox="0 0 100 100">
-                <circle class="ring" cx="50" cy="50" r="45"/>
-            </svg>
+            <svg class="preloader-svg" viewBox="0 0 100 100"><circle class="ring" cx="50" cy="50" r="45"/></svg>
             <div class="preloader-logo-text">AR DECOR</div>
         </div>
     </div>
 
-    <!-- ============ NAVIGATION ============ -->
     <nav class="navbar" id="navbar">
         <a href="#" class="nav-logo">AR<span>DECOR</span></a>
         <ul class="nav-links" id="navLinks">
@@ -372,112 +221,55 @@
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact" class="nav-cta">Book Now</a></li>
         </ul>
-        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </div>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     </nav>
 
-    <!-- ============ HERO SECTION ============ -->
     <section class="hero" id="home">
         <canvas id="particleCanvas" class="particle-grid"></canvas>
         <div class="hero-content">
             <p class="hero-subtitle">✦ Daltonganj's Premier Design Studio ✦</p>
             <h1 class="hero-title" id="heroTitle"></h1>
-            <p class="hero-desc">
-                We craft interiors & exteriors that whisper elegance. Tailored spaces, timeless beauty — right here in Jharkhand.
-            </p>
+            <p class="hero-desc">We craft interiors & exteriors that whisper elegance. Tailored spaces, timeless beauty — right here in Jharkhand.</p>
             <div class="hero-buttons">
                 <a href="#portfolio" class="btn btn-primary">Explore Our Work</a>
                 <a href="#contact" class="btn btn-outline">Free Consultation</a>
             </div>
         </div>
         <div class="hero-scroll" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
-            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"/>
-            </svg>
+            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
     </section>
 
-    <!-- ============ SERVICES ============ -->
     <section id="services">
         <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;">
             <p class="section-tag">What We Offer</p>
             <h2 class="section-title">Exquisite <span>Services</span></h2>
             <div class="section-line"></div>
-            <p class="section-desc">
-                From intimate interiors to grand exteriors, we craft spaces that inspire and endure.
-            </p>
         </div>
         <div class="services-grid">
-            <div class="service-card reveal">
-                <div class="service-card-image"><div class="img-placeholder">🏠</div></div>
-                <div class="service-card-body">
-                    <h3>Interior Design</h3>
-                    <p>Luxury living spaces that reflect your soul. From contemporary minimalism to opulent classics, every corner becomes a masterpiece.</p>
-                    <a href="#" class="btn btn-outline" style="border-color:var(--gold); color:var(--gold); margin-top:1rem; display:inline-block; padding:0.6rem 2rem;">Learn More</a>
-                </div>
-            </div>
-            <div class="service-card reveal">
-                <div class="service-card-image"><div class="img-placeholder" style="background:linear-gradient(135deg,#e8e4dd,#d9d3c8);">🏡</div></div>
-                <div class="service-card-body">
-                    <h3>Exterior Design</h3>
-                    <p>Stunning facades, lush landscapes, and grand entrances that make a lasting first impression. We transform your outdoor dreams into reality.</p>
-                    <a href="#" class="btn btn-outline" style="border-color:var(--gold); color:var(--gold); margin-top:1rem; display:inline-block; padding:0.6rem 2rem;">Learn More</a>
-                </div>
-            </div>
-            <div class="service-card reveal">
-                <div class="service-card-image"><div class="img-placeholder" style="background:linear-gradient(135deg,#f0ece5,#e3dcd1);">🛋️</div></div>
-                <div class="service-card-body">
-                    <h3>Bespoke Furniture</h3>
-                    <p>Handcrafted, one-of-a-kind pieces designed exclusively for your home or office. Every detail is tailored to perfection.</p>
-                    <a href="#" class="btn btn-outline" style="border-color:var(--gold); color:var(--gold); margin-top:1rem; display:inline-block; padding:0.6rem 2rem;">Learn More</a>
-                </div>
-            </div>
+            <div class="service-card reveal"><div class="service-card-image"><div class="img-placeholder">🏠</div></div><div class="service-card-body"><h3>Interior Design</h3><p>Luxury living spaces that reflect your soul. From contemporary minimalism to opulent classics, every corner becomes a masterpiece.</p><a href="#" class="btn btn-outline" style="border-color:var(--gold); color:var(--gold); margin-top:1rem; display:inline-block; padding:0.6rem 2rem;">Learn More</a></div></div>
+            <div class="service-card reveal"><div class="service-card-image"><div class="img-placeholder" style="background:linear-gradient(135deg,#e8e4dd,#d9d3c8);">🏡</div></div><div class="service-card-body"><h3>Exterior Design</h3><p>Stunning facades, lush landscapes, and grand entrances that make a lasting first impression.</p><a href="#" class="btn btn-outline" style="border-color:var(--gold); color:var(--gold); margin-top:1rem; display:inline-block; padding:0.6rem 2rem;">Learn More</a></div></div>
+            <div class="service-card reveal"><div class="service-card-image"><div class="img-placeholder" style="background:linear-gradient(135deg,#f0ece5,#e3dcd1);">🛋️</div></div><div class="service-card-body"><h3>Bespoke Furniture</h3><p>Handcrafted, one-of-a-kind pieces designed exclusively for your home or office.</p><a href="#" class="btn btn-outline" style="border-color:var(--gold); color:var(--gold); margin-top:1rem; display:inline-block; padding:0.6rem 2rem;">Learn More</a></div></div>
         </div>
     </section>
 
-    <!-- ============ PORTFOLIO ============ -->
     <section id="portfolio" style="background:var(--white);">
         <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;">
             <p class="section-tag">Our Creations</p>
             <h2 class="section-title">Signature <span>Projects</span></h2>
             <div class="section-line"></div>
-            <p class="section-desc">A glimpse into our transformations across Daltonganj and beyond.</p>
         </div>
-        <div class="portfolio-grid" id="portfolioGrid">
-            <div class="portfolio-item reveal" onclick="openLightbox('The Oak Villa – A modern luxury residence in Daltonganj')">
-                <div class="portfolio-img" style="background:linear-gradient(135deg,#e8ddd0,#c4b5a0);"></div>
-                <div class="portfolio-overlay"><h4>The Oak Villa</h4><p>Daltonganj</p></div>
-            </div>
-            <div class="portfolio-item reveal" onclick="openLightbox('Zen Garden – Tranquil outdoor retreat in Ranchi')">
-                <div class="portfolio-img" style="background:linear-gradient(135deg,#dfd5c8,#baad99);"></div>
-                <div class="portfolio-overlay"><h4>Zen Garden</h4><p>Ranchi</p></div>
-            </div>
-            <div class="portfolio-item reveal" onclick="openLightbox('Royal Dining – Opulent dining room in Daltonganj')">
-                <div class="portfolio-img" style="background:linear-gradient(135deg,#ede3d6,#c9bbaa);"></div>
-                <div class="portfolio-overlay"><h4>Royal Dining</h4><p>Daltonganj</p></div>
-            </div>
-            <div class="portfolio-item reveal" onclick="openLightbox('Tech Office – Modern workspace in Jharkhand')">
-                <div class="portfolio-img" style="background:linear-gradient(135deg,#e5dad0,#bfb09c);"></div>
-                <div class="portfolio-overlay"><h4>Tech Office</h4><p>Jharkhand</p></div>
-            </div>
-            <div class="portfolio-item reveal" onclick="openLightbox('Sunset Lounge – Cozy evening space in Daltonganj')">
-                <div class="portfolio-img" style="background:linear-gradient(135deg,#ece0d4,#c7b8a5);"></div>
-                <div class="portfolio-overlay"><h4>Sunset Lounge</h4><p>Daltonganj</p></div>
-            </div>
-            <div class="portfolio-item reveal" onclick="openLightbox('Poolside Deck – Resort-style pool in Deoghar')">
-                <div class="portfolio-img" style="background:linear-gradient(135deg,#e0d5c7,#bbac97);"></div>
-                <div class="portfolio-overlay"><h4>Poolside Deck</h4><p>Deoghar</p></div>
-            </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item reveal" onclick="openLightbox('The Oak Villa – A modern luxury residence in Daltonganj')"><div class="portfolio-img" style="background:linear-gradient(135deg,#e8ddd0,#c4b5a0);"></div><div class="portfolio-overlay"><h4>The Oak Villa</h4><p>Daltonganj</p></div></div>
+            <div class="portfolio-item reveal" onclick="openLightbox('Zen Garden – Tranquil outdoor retreat in Ranchi')"><div class="portfolio-img" style="background:linear-gradient(135deg,#dfd5c8,#baad99);"></div><div class="portfolio-overlay"><h4>Zen Garden</h4><p>Ranchi</p></div></div>
+            <div class="portfolio-item reveal" onclick="openLightbox('Royal Dining – Opulent dining room in Daltonganj')"><div class="portfolio-img" style="background:linear-gradient(135deg,#ede3d6,#c9bbaa);"></div><div class="portfolio-overlay"><h4>Royal Dining</h4><p>Daltonganj</p></div></div>
+            <div class="portfolio-item reveal" onclick="openLightbox('Tech Office – Modern workspace in Jharkhand')"><div class="portfolio-img" style="background:linear-gradient(135deg,#e5dad0,#bfb09c);"></div><div class="portfolio-overlay"><h4>Tech Office</h4><p>Jharkhand</p></div></div>
+            <div class="portfolio-item reveal" onclick="openLightbox('Sunset Lounge – Cozy evening space in Daltonganj')"><div class="portfolio-img" style="background:linear-gradient(135deg,#ece0d4,#c7b8a5);"></div><div class="portfolio-overlay"><h4>Sunset Lounge</h4><p>Daltonganj</p></div></div>
+            <div class="portfolio-item reveal" onclick="openLightbox('Poolside Deck – Resort-style pool in Deoghar')"><div class="portfolio-img" style="background:linear-gradient(135deg,#e0d5c7,#bbac97);"></div><div class="portfolio-overlay"><h4>Poolside Deck</h4><p>Deoghar</p></div></div>
         </div>
     </section>
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <div class="lightbox-content" id="lightboxContent">Image would appear here</div>
-    </div>
+    <div class="lightbox" id="lightbox"><span class="lightbox-close" onclick="closeLightbox()">&times;</span><div class="lightbox-content" id="lightboxContent"></div></div>
 
-    <!-- ============ ABOUT & TIMELINE ============ -->
     <section id="about">
         <div class="about-container">
             <div class="about-image reveal"></div>
@@ -485,14 +277,14 @@
                 <p class="section-tag" style="text-align:left;">Our Legacy</p>
                 <h2 class="section-title">Since <span>2005</span></h2>
                 <div class="section-line" style="margin:1.5rem 0;"></div>
-                <p>AR Decor started its journey in the heart of Daltonganj. Over 18 years, we've grown into a trusted design studio, transforming homes and businesses across Jharkhand with passion and precision.</p>
+                <p>AR Decor started in the heart of Daltonganj. Over 18 years, we've grown into a trusted design studio, transforming homes and businesses across Jharkhand with passion and precision.</p>
                 <div style="display:flex; gap:3rem; margin-top:2.5rem; flex-wrap:wrap;">
                     <div><span class="counter" data-target="500">0</span><span class="counter-label">Projects</span></div>
                     <div><span class="counter" data-target="18">0</span><span class="counter-label">Years Exp</span></div>
                     <div><span class="counter" data-target="45">0</span><span class="counter-label">Cities</span></div>
                 </div>
                 <div class="timeline">
-                    <div class="timeline-item"><span class="timeline-year">2005</span><p>AR Decor founded in Daltonganj with a passion for design.</p></div>
+                    <div class="timeline-item"><span class="timeline-year">2005</span><p>AR Decor founded in Daltonganj.</p></div>
                     <div class="timeline-item"><span class="timeline-year">2010</span><p>Expanded to Ranchi; completed 100th project.</p></div>
                     <div class="timeline-item"><span class="timeline-year">2018</span><p>Launched bespoke furniture line.</p></div>
                     <div class="timeline-item"><span class="timeline-year">2025</span><p>500+ happy clients across Jharkhand.</p></div>
@@ -501,182 +293,66 @@
         </div>
     </section>
 
-    <!-- ============ TEAM ============ -->
     <section id="team" style="background:var(--white);">
-        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;">
-            <p class="section-tag">Meet the Makers</p>
-            <h2 class="section-title">Our <span>Designers</span></h2>
-            <div class="section-line"></div>
-        </div>
+        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;"><p class="section-tag">Meet the Makers</p><h2 class="section-title">Our <span>Designers</span></h2><div class="section-line"></div></div>
         <div class="team-grid">
-            <div class="team-member reveal">
-                <div class="team-avatar">👤</div>
-                <h3>Anjali Verma</h3>
-                <p>Principal Interior Designer</p>
-            </div>
-            <div class="team-member reveal">
-                <div class="team-avatar">👤</div>
-                <h3>Rohit Singh</h3>
-                <p>Head of Exterior Architecture</p>
-            </div>
-            <div class="team-member reveal">
-                <div class="team-avatar">👤</div>
-                <h3>Priya Mehta</h3>
-                <p>Furniture & Product Designer</p>
-            </div>
-            <div class="team-member reveal">
-                <div class="team-avatar">👤</div>
-                <h3>Vikram Das</h3>
-                <p>Project Manager</p>
-            </div>
+            <div class="team-member reveal"><div class="team-avatar">👤</div><h3>Anjali Verma</h3><p>Principal Interior Designer</p></div>
+            <div class="team-member reveal"><div class="team-avatar">👤</div><h3>Rohit Singh</h3><p>Head of Exterior Architecture</p></div>
+            <div class="team-member reveal"><div class="team-avatar">👤</div><h3>Priya Mehta</h3><p>Furniture & Product Designer</p></div>
+            <div class="team-member reveal"><div class="team-avatar">👤</div><h3>Vikram Das</h3><p>Project Manager</p></div>
         </div>
     </section>
 
-    <!-- ============ PROCESS ============ -->
     <section>
-        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;">
-            <p class="section-tag">Our Workflow</p>
-            <h2 class="section-title">How We <span>Create</span></h2>
-            <div class="section-line"></div>
-        </div>
+        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;"><p class="section-tag">Our Workflow</p><h2 class="section-title">How We <span>Create</span></h2><div class="section-line"></div></div>
         <div class="process-grid">
-            <div class="process-step reveal"><div class="process-number">01</div><h3>Consult</h3><p>We listen deeply to your lifestyle, needs, and vision.</p></div>
-            <div class="process-step reveal"><div class="process-number">02</div><h3>Design</h3><p>Our team creates detailed 3D visualizations and mood boards.</p></div>
-            <div class="process-step reveal"><div class="process-number">03</div><h3>Curate</h3><p>We source the finest materials and bespoke furnishings.</p></div>
-            <div class="process-step reveal"><div class="process-number">04</div><h3>Transform</h3><p>Skilled artisans bring the vision to life with precision and care.</p></div>
+            <div class="process-step reveal"><div class="process-number">01</div><h3>Consult</h3><p>We listen deeply to your lifestyle and vision.</p></div>
+            <div class="process-step reveal"><div class="process-number">02</div><h3>Design</h3><p>Detailed 3D visualizations and mood boards.</p></div>
+            <div class="process-step reveal"><div class="process-number">03</div><h3>Curate</h3><p>We source the finest materials and furnishings.</p></div>
+            <div class="process-step reveal"><div class="process-number">04</div><h3>Transform</h3><p>Skilled artisans bring the vision to life.</p></div>
         </div>
     </section>
 
-    <!-- ============ PRICING ============ -->
     <section id="pricing" style="background:var(--white);">
-        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;">
-            <p class="section-tag">Packages</p>
-            <h2 class="section-title">Transparent <span>Pricing</span></h2>
-            <div class="section-line"></div>
-            <p class="section-desc">Choose a plan that suits your style and budget.</p>
-        </div>
+        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;"><p class="section-tag">Packages</p><h2 class="section-title">Transparent <span>Pricing</span></h2><div class="section-line"></div></div>
         <div class="pricing-grid">
-            <div class="pricing-card reveal">
-                <h3>Essential</h3>
-                <div class="price">₹80k</div>
-                <p>1 Room Interior</p>
-                <p>Design Consultation</p>
-                <p>Basic 3D Views</p>
-                <a href="#contact" class="btn btn-outline" style="border-color:var(--gold); color:var(--gold); margin-top:1.5rem; display:inline-block;">Choose</a>
-            </div>
-            <div class="pricing-card featured reveal">
-                <h3>Premium</h3>
-                <div class="price">₹2.5L</div>
-                <p>Full Home Interior</p>
-                <p>Custom Furniture</p>
-                <p>Detailed 3D Renders</p>
-                <a href="#contact" class="btn btn-primary" style="margin-top:1.5rem;">Most Popular</a>
-            </div>
-            <div class="pricing-card reveal">
-                <h3>Luxury</h3>
-                <div class="price">₹10L+</div>
-                <p>Villa / Commercial</p>
-                <p>Turnkey Solution</p>
-                <p>Dedicated Designer</p>
-                <a href="#contact" class="btn btn-outline" style="border-color:var(--gold); color:var(--gold); margin-top:1.5rem; display:inline-block;">Enquire</a>
-            </div>
+            <div class="pricing-card reveal"><h3>Essential</h3><div class="price">₹80k</div><p>1 Room Interior</p><p>Design Consultation</p><a href="#contact" class="btn btn-outline" style="border-color:var(--gold); color:var(--gold); margin-top:1.5rem; display:inline-block;">Choose</a></div>
+            <div class="pricing-card featured reveal"><h3>Premium</h3><div class="price">₹2.5L</div><p>Full Home Interior</p><p>Custom Furniture</p><a href="#contact" class="btn btn-primary" style="margin-top:1.5rem;">Most Popular</a></div>
+            <div class="pricing-card reveal"><h3>Luxury</h3><div class="price">₹10L+</div><p>Villa / Commercial</p><p>Turnkey Solution</p><a href="#contact" class="btn btn-outline" style="border-color:var(--gold); color:var(--gold); margin-top:1.5rem; display:inline-block;">Enquire</a></div>
         </div>
     </section>
 
-    <!-- ============ TESTIMONIALS CAROUSEL ============ -->
     <section style="background:var(--dark); color:white;">
-        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;">
-            <p class="section-tag" style="color:var(--gold);">Client Love</p>
-            <h2 class="section-title" style="color:white;">What They <span style="color:var(--gold);">Say</span></h2>
-        </div>
+        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;"><p class="section-tag" style="color:var(--gold);">Client Love</p><h2 class="section-title" style="color:white;">What They <span style="color:var(--gold);">Say</span></h2></div>
         <div class="testimonial-carousel reveal" style="max-width:800px; margin:0 auto; overflow:hidden;">
             <div class="testimonial-track" id="testimonialTrack" style="display:flex; transition:transform 0.8s ease;">
-                <div class="testimonial-card" style="min-width:100%; padding:3rem; background:rgba(255,255,255,0.04); border-radius:var(--radius);">
-                    <div class="stars" style="color:var(--gold);">★★★★★</div>
-                    <p>"AR Decor transformed our Daltonganj bungalow into a palace. Every guest is stunned."</p>
-                    <strong>— R. Sharma, Daltonganj</strong>
-                </div>
-                <div class="testimonial-card" style="min-width:100%; padding:3rem; background:rgba(255,255,255,0.04); border-radius:var(--radius);">
-                    <div class="stars" style="color:var(--gold);">★★★★★</div>
-                    <p>"The exterior design made our hotel the talk of Ranchi. Professional and creative."</p>
-                    <strong>— P. Verma, Ranchi</strong>
-                </div>
-                <div class="testimonial-card" style="min-width:100%; padding:3rem; background:rgba(255,255,255,0.04); border-radius:var(--radius);">
-                    <div class="stars" style="color:var(--gold);">★★★★★</div>
-                    <p>"Their custom furniture is art. Our office now feels like a five-star workspace."</p>
-                    <strong>— A. Kumar, Daltonganj</strong>
-                </div>
+                <div class="testimonial-card" style="min-width:100%; padding:3rem; background:rgba(255,255,255,0.04); border-radius:var(--radius);"><div class="stars" style="color:var(--gold);">★★★★★</div><p>"AR Decor transformed our Daltonganj bungalow into a palace."</p><strong>— R. Sharma, Daltonganj</strong></div>
+                <div class="testimonial-card" style="min-width:100%; padding:3rem; background:rgba(255,255,255,0.04); border-radius:var(--radius);"><div class="stars" style="color:var(--gold);">★★★★★</div><p>"The exterior design made our hotel the talk of Ranchi."</p><strong>— P. Verma, Ranchi</strong></div>
+                <div class="testimonial-card" style="min-width:100%; padding:3rem; background:rgba(255,255,255,0.04); border-radius:var(--radius);"><div class="stars" style="color:var(--gold);">★★★★★</div><p>"Their custom furniture is art. Our office feels five-star."</p><strong>— A. Kumar, Daltonganj</strong></div>
             </div>
         </div>
     </section>
 
-    <!-- ============ BLOG ============ -->
     <section id="blog">
-        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;">
-            <p class="section-tag">Inspiration</p>
-            <h2 class="section-title">Design <span>Journal</span></h2>
-            <div class="section-line"></div>
-        </div>
+        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;"><p class="section-tag">Inspiration</p><h2 class="section-title">Design <span>Journal</span></h2><div class="section-line"></div></div>
         <div class="blog-grid">
-            <div class="blog-card reveal">
-                <div class="blog-img">📝</div>
-                <div class="blog-body">
-                    <h3>5 Trends in Modern Interior</h3>
-                    <p>Discover how minimalist luxury is redefining homes in 2026.</p>
-                    <a href="#" style="color:var(--gold-dark);">Read More →</a>
-                </div>
-            </div>
-            <div class="blog-card reveal">
-                <div class="blog-img">🏡</div>
-                <div class="blog-body">
-                    <h3>Transforming Small Spaces</h3>
-                    <p>Smart design tricks to make any room feel spacious and elegant.</p>
-                    <a href="#" style="color:var(--gold-dark);">Read More →</a>
-                </div>
-            </div>
-            <div class="blog-card reveal">
-                <div class="blog-img">🪴</div>
-                <div class="blog-body">
-                    <h3>Outdoor Oasis on a Budget</h3>
-                    <p>How to create a stunning exterior without breaking the bank.</p>
-                    <a href="#" style="color:var(--gold-dark);">Read More →</a>
-                </div>
-            </div>
+            <div class="blog-card reveal"><div class="blog-img">📝</div><div class="blog-body"><h3>5 Trends in Modern Interior</h3><p>Discover how minimalist luxury is redefining homes.</p><a href="#" style="color:var(--gold-dark);">Read More →</a></div></div>
+            <div class="blog-card reveal"><div class="blog-img">🏡</div><div class="blog-body"><h3>Transforming Small Spaces</h3><p>Smart design tricks to make any room feel spacious.</p><a href="#" style="color:var(--gold-dark);">Read More →</a></div></div>
+            <div class="blog-card reveal"><div class="blog-img">🪴</div><div class="blog-body"><h3>Outdoor Oasis on a Budget</h3><p>Create a stunning exterior without breaking the bank.</p><a href="#" style="color:var(--gold-dark);">Read More →</a></div></div>
         </div>
     </section>
 
-    <!-- ============ FAQ ACCORDION ============ -->
     <section id="faq" style="background:var(--white);">
-        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;">
-            <p class="section-tag">FAQs</p>
-            <h2 class="section-title">Common <span>Questions</span></h2>
-            <div class="section-line"></div>
-        </div>
+        <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;"><p class="section-tag">FAQs</p><h2 class="section-title">Common <span>Questions</span></h2><div class="section-line"></div></div>
         <div class="faq-container reveal" style="max-width:800px; margin:0 auto;">
-            <div class="faq-item">
-                <div class="faq-question">What areas do you serve? <span>+</span></div>
-                <div class="faq-answer"><p>We are based in Daltonganj but serve all major cities in Jharkhand including Ranchi, Deoghar, Hazaribagh, and even out-of-state requests.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">How long does a typical interior project take? <span>+</span></div>
-                <div class="faq-answer"><p>Interior projects usually take 4-8 weeks depending on the scope. We always provide a clear timeline during consultation.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Do you offer free design consultations? <span>+</span></div>
-                <div class="faq-answer"><p>Absolutely! The first consultation is complimentary. We'll discuss your space, style, and budget without any commitment.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Can I see a 3D model before work begins? <span>+</span></div>
-                <div class="faq-answer"><p>Yes, we create detailed 3D renderings so you can visualize the final outcome before we start.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Do you handle both modern and traditional styles? <span>+</span></div>
-                <div class="faq-answer"><p>Our designers are proficient in a wide range of aesthetics — from ultra-modern to traditional Indian and everything in between.</p></div>
-            </div>
+            <div class="faq-item"><div class="faq-question">What areas do you serve? <span>+</span></div><div class="faq-answer"><p>We are based in Daltonganj and serve all major Jharkhand cities including Ranchi, Deoghar, Hazaribagh.</p></div></div>
+            <div class="faq-item"><div class="faq-question">How long does an interior project take? <span>+</span></div><div class="faq-answer"><p>Usually 4-8 weeks depending on scope. We provide a clear timeline during consultation.</p></div></div>
+            <div class="faq-item"><div class="faq-question">Do you offer free consultations? <span>+</span></div><div class="faq-answer"><p>Absolutely! The first consultation is complimentary.</p></div></div>
+            <div class="faq-item"><div class="faq-question">Can I see a 3D model before work? <span>+</span></div><div class="faq-answer"><p>Yes, we create detailed 3D renderings so you can visualize the final outcome.</p></div></div>
         </div>
     </section>
 
-    <!-- ============ CONTACT ============ -->
+    <!-- ============ CONTACT SECTION ============ -->
     <section id="contact">
         <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;">
             <p class="section-tag">Reach Us</p>
@@ -687,9 +363,11 @@
         <div style="display:flex; gap:3rem; max-width:1200px; margin:0 auto; flex-wrap:wrap;">
             <div class="reveal" style="flex:1; min-width:280px;">
                 <h3 style="font-family:var(--font-heading); font-size:2rem;">Visit Our Studio</h3>
-                <p>Monday – Saturday : 10am – 7pm<br>📞 +91 98765 43210<br>✉️ hello@ardecor.in</p>
-                <div style="margin-top:2rem;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116556.28599044875!2d84.027562!3d24.032461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398f3b0e6b5e2d73%3A0x9c2a5c6d5b5b6e!2sDaltonganj%2C%20Jharkhand!5e0!3m2!1sen!2sin!4v1690000000000" width="100%" height="200" style="border:0; border-radius:var(--radius-sm);" allowfullscreen="" loading="lazy"></iframe>
+                <p>Monday – Saturday : 10am – 7pm</p>
+                <p>📞 +91 98765 43210</p>
+                <p>✉️ hello@ardecor.in</p>
+                <div class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116556.28599044875!2d84.027562!3d24.032461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398f3b0e6b5e2d73%3A0x9c2a5c6d5b5b6e!2sDaltonganj%2C%20Jharkhand!5e0!3m2!1sen!2sin!4v1690000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
             <form class="contact-form reveal" style="flex:1.5;" onsubmit="handleSubmit(event)">
@@ -704,60 +382,25 @@
                     <option>Consultation Only</option>
                 </select>
                 <textarea placeholder="Tell us about your project, budget, and timeline..." required></textarea>
-                <button type="submit" class="btn btn-primary" style="width:100%;">Send Enquiry ✦</button>
+                <button type="submit" class="btn btn-primary">Send Enquiry ✦</button>
             </form>
         </div>
     </section>
 
-    <!-- ============ FOOTER ============ -->
     <footer>
         <div class="footer-grid">
-            <div>
-                <h3>AR<span style="color:var(--gold);">DECOR</span></h3>
-                <p>Daltonganj's most trusted interior & exterior design studio. Since 2005.</p>
-            </div>
-            <div>
-                <h3>Quick Links</h3>
-                <a href="#home">Home</a>
-                <a href="#services">Services</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="#pricing">Pricing</a>
-            </div>
-            <div>
-                <h3>Services</h3>
-                <a href="#services">Interior Design</a>
-                <a href="#services">Exterior Design</a>
-                <a href="#services">Bespoke Furniture</a>
-                <a href="#services">Landscaping</a>
-            </div>
-            <div>
-                <h3>Contact</h3>
-                <p>📍 Daltonganj, Jharkhand</p>
-                <p>📞 +91 98765 43210</p>
-                <p>✉️ hello@ardecor.in</p>
-                <p>🕐 Mon–Sat: 10AM–7PM</p>
-            </div>
+            <div><h3>AR<span style="color:var(--gold);">DECOR</span></h3><p>Daltonganj's most trusted interior & exterior design studio. Since 2005.</p></div>
+            <div><h3>Quick Links</h3><a href="#home">Home</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#pricing">Pricing</a></div>
+            <div><h3>Services</h3><a href="#services">Interior Design</a><a href="#services">Exterior Design</a><a href="#services">Bespoke Furniture</a></div>
+            <div><h3>Contact</h3><p>📍 Daltonganj, Jharkhand</p><p>📞 +91 98765 43210</p><p>✉️ hello@ardecor.in</p></div>
         </div>
-        <div style="text-align:center; margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.3);">
-            © 2026 AR Decor. All rights reserved. Made with ❤️ in India.
-        </div>
+        <div style="text-align:center; margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.3);">© 2026 AR Decor. Made with ❤️ in India.</div>
     </footer>
 
-    <!-- ============ BACK TO TOP ============ -->
-    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        ↑
-        <svg class="progress-ring" viewBox="0 0 68 68">
-            <circle cx="34" cy="34" r="32" id="progressCircle"/>
-        </svg>
-    </button>
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑<svg class="progress-ring" viewBox="0 0 68 68"><circle cx="34" cy="34" r="32" id="progressCircle"/></svg></button>
 
     <script>
-        // ========== PRELOADER ==========
-        window.addEventListener('load', () => {
-            setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 1200);
-        });
-
-        // ========== NAVIGATION ==========
+        window.addEventListener('load', () => setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 1200));
         const navbar = document.getElementById('navbar');
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
@@ -765,18 +408,10 @@
             backToTop.classList.toggle('visible', window.scrollY > 600);
             updateScrollProgress();
         });
-
-        function toggleMenu() {
-            document.getElementById('hamburger').classList.toggle('active');
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-        function closeMenu() {
-            document.getElementById('hamburger').classList.remove('active');
-            document.getElementById('navLinks').classList.remove('active');
-        }
+        function toggleMenu() { document.getElementById('hamburger').classList.toggle('active'); document.getElementById('navLinks').classList.toggle('active'); }
+        function closeMenu() { document.getElementById('hamburger').classList.remove('active'); document.getElementById('navLinks').classList.remove('active'); }
         document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', closeMenu));
 
-        // ========== HERO SPLIT TEXT ==========
         const heroTitle = document.getElementById('heroTitle');
         const words = ['Transform', 'Your', 'Space', 'Into Art'];
         words.forEach((word, idx) => {
@@ -793,102 +428,60 @@
             if (idx < 3) heroTitle.appendChild(document.createTextNode(' '));
         });
 
-        // ========== PARTICLES ==========
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let w, h, particles = [];
         const mouse = { x: null, y: null, radius: 100 };
-
-        function resizeCanvas() {
-            w = canvas.width = window.innerWidth;
-            h = canvas.height = window.innerHeight;
-            initParticles();
-        }
+        function resizeCanvas() { w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; initParticles(); }
         function initParticles() {
             particles = [];
-            const cols = Math.floor(w / 25);
-            const rows = Math.floor(h / 25);
-            for (let i = 0; i < cols; i++) {
-                for (let j = 0; j < rows; j++) {
-                    particles.push({
-                        x: i * 25 + 12, y: j * 25 + 12,
-                        baseX: i * 25 + 12, baseY: j * 25 + 12, size: 1.2
-                    });
-                }
-            }
+            const cols = Math.floor(w/25), rows = Math.floor(h/25);
+            for (let i=0; i<cols; i++) for (let j=0; j<rows; j++) particles.push({x:i*25+12, y:j*25+12, baseX:i*25+12, baseY:j*25+12, size:1.2});
         }
         function drawParticles() {
-            ctx.clearRect(0, 0, w, h);
+            ctx.clearRect(0,0,w,h);
             ctx.fillStyle = 'rgba(201,169,110,0.5)';
             particles.forEach(p => {
-                let dx = mouse.x - p.x, dy = mouse.y - p.y, dist = Math.sqrt(dx*dx+dy*dy);
-                if (dist < mouse.radius) {
-                    const angle = Math.atan2(dy, dx);
-                    p.x = p.baseX + Math.cos(angle) * (mouse.radius - dist) * 0.4;
-                    p.y = p.baseY + Math.sin(angle) * (mouse.radius - dist) * 0.4;
-                } else {
-                    p.x += (p.baseX - p.x) * 0.1;
-                    p.y += (p.baseY - p.y) * 0.1;
-                }
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-                ctx.fill();
+                let dx=mouse.x-p.x, dy=mouse.y-p.y, dist=Math.sqrt(dx*dx+dy*dy);
+                if(dist<mouse.radius) { let angle=Math.atan2(dy,dx); p.x=p.baseX+Math.cos(angle)*(mouse.radius-dist)*0.4; p.y=p.baseY+Math.sin(angle)*(mouse.radius-dist)*0.4; }
+                else { p.x+=(p.baseX-p.x)*0.1; p.y+=(p.baseY-p.y)*0.1; }
+                ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
             });
             requestAnimationFrame(drawParticles);
         }
-        window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        window.addEventListener('mousemove', e => { mouse.x=e.clientX; mouse.y=e.clientY; });
         window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        drawParticles();
+        resizeCanvas(); drawParticles();
 
-        // ========== SCROLL REVEAL ==========
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.2 });
+        const observer = new IntersectionObserver(entries => entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); }), { threshold:0.2 });
         document.querySelectorAll('.reveal, .section-header').forEach(el => observer.observe(el));
 
-        // ========== COUNTER ANIMATION ==========
         const counters = document.querySelectorAll('.counter');
-        const counterObserver = new IntersectionObserver((entries) => {
+        const counterObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
                     const el = entry.target;
                     const target = +el.getAttribute('data-target');
-                    let count = 0;
-                    const speed = target / 50;
-                    const updateCount = () => {
-                        if(count < target) { count += Math.ceil(speed); el.innerText = count; requestAnimationFrame(updateCount); }
-                        else el.innerText = target;
-                    };
+                    let count=0;
+                    const speed = target/50;
+                    const updateCount = () => { if(count<target) { count+=Math.ceil(speed); el.innerText=count; requestAnimationFrame(updateCount); } else el.innerText=target; };
                     updateCount();
                     counterObserver.unobserve(el);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold:0.5 });
         counters.forEach(c => counterObserver.observe(c));
 
-        // ========== TESTIMONIAL CAROUSEL ==========
         const track = document.getElementById('testimonialTrack');
         const cards = document.querySelectorAll('.testimonial-card');
         let current = 0;
-        setInterval(() => {
-            current = (current + 1) % cards.length;
-            track.style.transform = `translateX(-${current * 100}%)`;
-        }, 4000);
+        setInterval(() => { current = (current+1) % cards.length; track.style.transform = `translateX(-${current*100}%)`; }, 4000);
 
-        // ========== LIGHTBOX ==========
-        function openLightbox(description) {
-            document.getElementById('lightboxContent').innerHTML = `<h3 style="color:var(--gold);">✨ ${description.split(' – ')[0]}</h3><p style="margin-top:1rem;">${description.split(' – ')[1] || ''}</p><p style="margin-top:2rem; color:var(--text-light);">High‑resolution image would be displayed here.</p>`;
-            document.getElementById('lightbox').classList.add('active');
-        }
+        function openLightbox(desc) { document.getElementById('lightboxContent').innerHTML = `<h3 style="color:var(--gold);">✨ ${desc.split(' – ')[0]}</h3><p style="margin-top:1rem;">${desc.split(' – ')[1] || ''}</p><p style="margin-top:2rem; color:var(--text-light);">High‑resolution image would be displayed here.</p>`; document.getElementById('lightbox').classList.add('active'); }
         function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
 
-        // ========== FAQ ACCORDION ==========
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => q.parentElement.classList.toggle('active'));
-        });
+        document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('active')));
 
-        // ========== CONTACT FORM ==========
         function handleSubmit(e) {
             e.preventDefault();
             const btn = e.target.querySelector('button');
@@ -896,115 +489,7 @@
             btn.disabled = true;
             setTimeout(() => { btn.textContent = 'Send Enquiry ✦'; btn.disabled = false; e.target.reset(); }, 2500);
         }
-<style>
-/* Updated Contact Form Styles */
-.contact-form {
-    background: var(--white);
-    padding: 3rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
-    transition: box-shadow 0.4s ease;
-}
-.contact-form:hover {
-    box-shadow: 0 30px 70px rgba(0,0,0,0.12);
-}
-.contact-form input,
-.contact-form textarea,
-.contact-form select {
-    width: 100%;
-    padding: 1rem 1.4rem;
-    margin-bottom: 1.5rem;
-    border: 2px solid #e8e4dc;
-    border-radius: var(--radius-sm); /* consistent rounded corners */
-    background: var(--cream);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    color: var(--text);
-    transition: all 0.3s ease;
-    outline: none;
-    appearance: none; /* removes default select arrow for custom styling */
-    background-image: url("data:image/svg+xml;utf8,<svg fill='%236b6359' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1.2rem;
-}
-.contact-form textarea {
-    min-height: 150px;
-    resize: vertical;
-}
-.contact-form input:focus,
-.contact-form textarea:focus,
-.contact-form select:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 4px rgba(201,169,110,0.1);
-    background: var(--white);
-}
-.contact-form .btn-primary {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1rem;
-    letter-spacing: 1px;
-}
-/* Map Container */
-.contact-map {
-    margin-top: 2rem;
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-}
-.contact-map iframe {
-    width: 100%;
-    height: 200px;
-    border: none;
-}
-/* Responsive alignment */
-@media (max-width: 768px) {
-    .contact-form {
-        padding: 2rem;
-    }
-    .contact-form input,
-    .contact-form textarea,
-    .contact-form select {
-        padding: 0.9rem 1.2rem;
-    }
-}
-</style>
 
-<section id="contact">
-    <div class="section-header reveal" style="text-align:center; margin-bottom:4rem;">
-        <p class="section-tag">Reach Us</p>
-        <h2 class="section-title">Let's <span>Talk</span></h2>
-        <div class="section-line"></div>
-        <p class="section-desc">📍 12, Civil Lines, Daltonganj, Jharkhand 822101</p>
-    </div>
-    <div style="display:flex; gap:3rem; max-width:1200px; margin:0 auto; flex-wrap:wrap;">
-        <div class="reveal" style="flex:1; min-width:280px;">
-            <h3 style="font-family:var(--font-heading); font-size:2rem;">Visit Our Studio</h3>
-            <p>Monday – Saturday : 10am – 7pm</p>
-            <p>📞 +91 98765 43210</p>
-            <p>✉️ hello@ardecor.in</p>
-            <div class="contact-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116556.28599044875!2d84.027562!3d24.032461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398f3b0e6b5e2d73%3A0x9c2a5c6d5b5b6e!2sDaltonganj%2C%20Jharkhand!5e0!3m2!1sen!2sin!4v1690000000000" 
-                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-        <form class="contact-form reveal" style="flex:1.5;" onsubmit="handleSubmit(event)">
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Email Address" required>
-            <input type="tel" placeholder="Phone Number">
-            <select required>
-                <option disabled selected>Service Interested</option>
-                <option>Interior Design</option>
-                <option>Exterior Design</option>
-                <option>Custom Furniture</option>
-                <option>Consultation Only</option>
-            </select>
-            <textarea placeholder="Tell us about your project, budget, and timeline..." required></textarea>
-            <button type="submit" class="btn btn-primary">Send Enquiry ✦</button>
-        </form>
-    </div>
-</section>
-        // ========== SCROLL PROGRESS RING ==========
         const progressCircle = document.getElementById('progressCircle');
         const circumference = 2 * Math.PI * 32;
         progressCircle.style.strokeDasharray = circumference;
