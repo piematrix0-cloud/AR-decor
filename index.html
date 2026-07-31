@@ -611,19 +611,14 @@
             overflow: hidden;
             position: relative;
         }
-        .service-card-image .img-bg {
+        .service-card-image img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            display: block;
             transition: transform 0.7s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: rgba(0, 0, 0, 0.08);
-            letter-spacing: 2px;
-            font-family: var(--font-heading);
         }
-        .service-card:hover .img-bg {
+        .service-card:hover .service-card-image img {
             transform: scale(1.08);
         }
         .service-card-body {
@@ -685,13 +680,9 @@
         .portfolio-img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
             transition: transform 0.7s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            color: rgba(0, 0, 0, 0.06);
-            font-family: var(--font-heading);
+            display: block;
         }
         .portfolio-item:hover .portfolio-img {
             transform: scale(1.06);
@@ -741,14 +732,23 @@
         }
         .lightbox-content {
             max-width: 75vw;
-            max-height: 75vh;
+            max-height: 85vh;
             border-radius: var(--radius);
             background: var(--dark-soft);
-            padding: 3rem;
+            padding: 1.5rem;
             text-align: center;
             color: var(--white);
             box-shadow: 0 0 80px rgba(0, 0, 0, 0.6);
             cursor: default;
+            overflow: auto;
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+            display: block;
+            margin: 0 auto 1.5rem;
         }
         .lightbox-close {
             position: absolute;
@@ -778,15 +778,16 @@
             flex: 1 1 380px;
             min-height: 480px;
             border-radius: var(--radius-lg);
-            background: linear-gradient(160deg, #e8ddd2 0%, #d9ccbb 30%, #c8b9a3 60%, #b8a790 100%);
             box-shadow: var(--shadow-lg);
             transition: transform var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: rgba(0, 0, 0, 0.05);
-            font-family: var(--font-heading);
+            overflow: hidden;
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 480px;
+            object-fit: cover;
+            display: block;
         }
         .about-image:hover {
             transform: scale(1.015);
@@ -1362,6 +1363,9 @@
             .about-image {
                 min-height: 350px;
             }
+            .about-image img {
+                min-height: 350px;
+            }
             .navbar {
                 padding: 1rem 2rem;
             }
@@ -1412,6 +1416,9 @@
             .about-image {
                 min-height: 300px;
                 width: 100%;
+            }
+            .about-image img {
+                min-height: 300px;
             }
             .contact-wrapper {
                 flex-direction: column;
@@ -1525,55 +1532,23 @@
             <div class="photo-strip-track" id="photoStripTrack">
                 <!-- Set 1 -->
                 <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #e8ddd0 0%, #d5c8b5 30%, #c4b5a0 60%, #b8a78e 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Living</div>
+                    <img class="strip-card-img" src="living.jpeg" alt="Living Room">
                     <div class="strip-card-overlay">
                         <span class="strip-card-tag">Interior</span>
-                        <span class="strip-card-title">The Oak Villa</span>
+                        <span class="strip-card-title">Living Room</span>
                         <span class="strip-card-location">Daltonganj</span>
                     </div>
                 </div>
                 <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #dfd5c8 0%, #c9bbaa 35%, #baad99 60%, #a89880 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Garden</div>
-                    <div class="strip-card-overlay">
-                        <span class="strip-card-tag">Exterior</span>
-                        <span class="strip-card-title">Zen Garden</span>
-                        <span class="strip-card-location">Ranchi</span>
-                    </div>
-                </div>
-                <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #ede3d6 0%, #d9ccbb 30%, #c9bbaa 60%, #b5a590 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Dining</div>
+                    <img class="strip-card-img" src="bedroom.jpeg" alt="Master Bedroom">
                     <div class="strip-card-overlay">
                         <span class="strip-card-tag">Interior</span>
-                        <span class="strip-card-title">Royal Dining</span>
+                        <span class="strip-card-title">Master Bedroom</span>
                         <span class="strip-card-location">Daltonganj</span>
                     </div>
                 </div>
                 <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #e5dad0 0%, #d2c5b3 35%, #bfb09c 60%, #aa9b85 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Office</div>
-                    <div class="strip-card-overlay">
-                        <span class="strip-card-tag">Commercial</span>
-                        <span class="strip-card-title">Tech Office</span>
-                        <span class="strip-card-location">Jharkhand</span>
-                    </div>
-                </div>
-                <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #ece0d4 0%, #d8cabc 30%, #c7b8a5 60%, #b3a38e 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Lounge</div>
-                    <div class="strip-card-overlay">
-                        <span class="strip-card-tag">Interior</span>
-                        <span class="strip-card-title">Sunset Lounge</span>
-                        <span class="strip-card-location">Daltonganj</span>
-                    </div>
-                </div>
-                <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #e0d5c7 0%, #cfc0ad 35%, #bbac97 60%, #a69780 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Poolside</div>
-                    <div class="strip-card-overlay">
-                        <span class="strip-card-tag">Exterior</span>
-                        <span class="strip-card-title">Poolside Deck</span>
-                        <span class="strip-card-location">Deoghar</span>
-                    </div>
-                </div>
-                <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #f0e8dc 0%, #ddd1c2 30%, #ccc0af 60%, #b8ab96 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Bedroom</div>
+                    <img class="strip-card-img" src="bedroom1.jpeg" alt="Bedroom Suite">
                     <div class="strip-card-overlay">
                         <span class="strip-card-tag">Interior</span>
                         <span class="strip-card-title">Serene Suite</span>
@@ -1581,64 +1556,64 @@
                     </div>
                 </div>
                 <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #e9ddd0 0%, #d6c8b6 35%, #c5b7a3 60%, #b0a18c 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Facade</div>
+                    <img class="strip-card-img" src="kitchen.jpeg" alt="Modular Kitchen">
                     <div class="strip-card-overlay">
-                        <span class="strip-card-tag">Exterior</span>
-                        <span class="strip-card-title">Grand Facade</span>
+                        <span class="strip-card-tag">Interior</span>
+                        <span class="strip-card-title">Modular Kitchen</span>
+                        <span class="strip-card-location">Ranchi</span>
+                    </div>
+                </div>
+                <div class="strip-card">
+                    <img class="strip-card-img" src="kitchen1.jpeg" alt="Chef's Kitchen">
+                    <div class="strip-card-overlay">
+                        <span class="strip-card-tag">Interior</span>
+                        <span class="strip-card-title">Chef's Kitchen</span>
+                        <span class="strip-card-location">Daltonganj</span>
+                    </div>
+                </div>
+                <div class="strip-card">
+                    <img class="strip-card-img" src="celling.jpeg" alt="Ceiling Design">
+                    <div class="strip-card-overlay">
+                        <span class="strip-card-tag">Interior</span>
+                        <span class="strip-card-title">False Ceiling Design</span>
+                        <span class="strip-card-location">Jharkhand</span>
+                    </div>
+                </div>
+                <div class="strip-card">
+                    <img class="strip-card-img" src="pooja.jpeg" alt="Pooja Room">
+                    <div class="strip-card-overlay">
+                        <span class="strip-card-tag">Interior</span>
+                        <span class="strip-card-title">Pooja Room</span>
+                        <span class="strip-card-location">Daltonganj</span>
+                    </div>
+                </div>
+                <div class="strip-card">
+                    <img class="strip-card-img" src="jeweelryint.jpeg" alt="Jewellery Showroom Interior">
+                    <div class="strip-card-overlay">
+                        <span class="strip-card-tag">Commercial</span>
+                        <span class="strip-card-title">Jewellery Showroom</span>
                         <span class="strip-card-location">Ranchi</span>
                     </div>
                 </div>
                 <!-- Set 2 (duplicate for seamless loop) -->
                 <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #e8ddd0 0%, #d5c8b5 30%, #c4b5a0 60%, #b8a78e 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Living</div>
+                    <img class="strip-card-img" src="living.jpeg" alt="Living Room">
                     <div class="strip-card-overlay">
                         <span class="strip-card-tag">Interior</span>
-                        <span class="strip-card-title">The Oak Villa</span>
+                        <span class="strip-card-title">Living Room</span>
                         <span class="strip-card-location">Daltonganj</span>
                     </div>
                 </div>
                 <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #dfd5c8 0%, #c9bbaa 35%, #baad99 60%, #a89880 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Garden</div>
-                    <div class="strip-card-overlay">
-                        <span class="strip-card-tag">Exterior</span>
-                        <span class="strip-card-title">Zen Garden</span>
-                        <span class="strip-card-location">Ranchi</span>
-                    </div>
-                </div>
-                <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #ede3d6 0%, #d9ccbb 30%, #c9bbaa 60%, #b5a590 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Dining</div>
+                    <img class="strip-card-img" src="bedroom.jpeg" alt="Master Bedroom">
                     <div class="strip-card-overlay">
                         <span class="strip-card-tag">Interior</span>
-                        <span class="strip-card-title">Royal Dining</span>
+                        <span class="strip-card-title">Master Bedroom</span>
                         <span class="strip-card-location">Daltonganj</span>
                     </div>
                 </div>
                 <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #e5dad0 0%, #d2c5b3 35%, #bfb09c 60%, #aa9b85 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Office</div>
-                    <div class="strip-card-overlay">
-                        <span class="strip-card-tag">Commercial</span>
-                        <span class="strip-card-title">Tech Office</span>
-                        <span class="strip-card-location">Jharkhand</span>
-                    </div>
-                </div>
-                <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #ece0d4 0%, #d8cabc 30%, #c7b8a5 60%, #b3a38e 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Lounge</div>
-                    <div class="strip-card-overlay">
-                        <span class="strip-card-tag">Interior</span>
-                        <span class="strip-card-title">Sunset Lounge</span>
-                        <span class="strip-card-location">Daltonganj</span>
-                    </div>
-                </div>
-                <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #e0d5c7 0%, #cfc0ad 35%, #bbac97 60%, #a69780 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Poolside</div>
-                    <div class="strip-card-overlay">
-                        <span class="strip-card-tag">Exterior</span>
-                        <span class="strip-card-title">Poolside Deck</span>
-                        <span class="strip-card-location">Deoghar</span>
-                    </div>
-                </div>
-                <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #f0e8dc 0%, #ddd1c2 30%, #ccc0af 60%, #b8ab96 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Bedroom</div>
+                    <img class="strip-card-img" src="bedroom1.jpeg" alt="Bedroom Suite">
                     <div class="strip-card-overlay">
                         <span class="strip-card-tag">Interior</span>
                         <span class="strip-card-title">Serene Suite</span>
@@ -1646,10 +1621,42 @@
                     </div>
                 </div>
                 <div class="strip-card">
-                    <div class="strip-card-img" style="background:linear-gradient(150deg, #e9ddd0 0%, #d6c8b6 35%, #c5b7a3 60%, #b0a18c 100%); display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(0,0,0,0.04);font-family:var(--font-heading);">Facade</div>
+                    <img class="strip-card-img" src="kitchen.jpeg" alt="Modular Kitchen">
                     <div class="strip-card-overlay">
-                        <span class="strip-card-tag">Exterior</span>
-                        <span class="strip-card-title">Grand Facade</span>
+                        <span class="strip-card-tag">Interior</span>
+                        <span class="strip-card-title">Modular Kitchen</span>
+                        <span class="strip-card-location">Ranchi</span>
+                    </div>
+                </div>
+                <div class="strip-card">
+                    <img class="strip-card-img" src="kitchen1.jpeg" alt="Chef's Kitchen">
+                    <div class="strip-card-overlay">
+                        <span class="strip-card-tag">Interior</span>
+                        <span class="strip-card-title">Chef's Kitchen</span>
+                        <span class="strip-card-location">Daltonganj</span>
+                    </div>
+                </div>
+                <div class="strip-card">
+                    <img class="strip-card-img" src="celling.jpeg" alt="Ceiling Design">
+                    <div class="strip-card-overlay">
+                        <span class="strip-card-tag">Interior</span>
+                        <span class="strip-card-title">False Ceiling Design</span>
+                        <span class="strip-card-location">Jharkhand</span>
+                    </div>
+                </div>
+                <div class="strip-card">
+                    <img class="strip-card-img" src="pooja.jpeg" alt="Pooja Room">
+                    <div class="strip-card-overlay">
+                        <span class="strip-card-tag">Interior</span>
+                        <span class="strip-card-title">Pooja Room</span>
+                        <span class="strip-card-location">Daltonganj</span>
+                    </div>
+                </div>
+                <div class="strip-card">
+                    <img class="strip-card-img" src="jeweelryint.jpeg" alt="Jewellery Showroom Interior">
+                    <div class="strip-card-overlay">
+                        <span class="strip-card-tag">Commercial</span>
+                        <span class="strip-card-title">Jewellery Showroom</span>
                         <span class="strip-card-location">Ranchi</span>
                     </div>
                 </div>
@@ -1668,7 +1675,7 @@
         <div class="services-grid">
             <div class="service-card reveal">
                 <div class="service-card-image">
-                    <div class="img-bg" style="background:linear-gradient(160deg, #f5f0e8 0%, #e8dfd3 40%, #dbd0c2 100%);">INTERIOR</div>
+                    <img src="living.jpeg" alt="Interior Design">
                 </div>
                 <div class="service-card-body">
                     <h3>Interior Design</h3>
@@ -1678,7 +1685,7 @@
             </div>
             <div class="service-card reveal">
                 <div class="service-card-image">
-                    <div class="img-bg" style="background:linear-gradient(160deg, #ece6dc 0%, #ddd5c7 40%, #cec4b3 100%);">EXTERIOR</div>
+                    <img src="celling.jpeg" alt="Exterior & Ceiling Design">
                 </div>
                 <div class="service-card-body">
                     <h3>Exterior Design</h3>
@@ -1688,7 +1695,7 @@
             </div>
             <div class="service-card reveal">
                 <div class="service-card-image">
-                    <div class="img-bg" style="background:linear-gradient(160deg, #f3efe7 0%, #e4dbce 40%, #d5cab9 100%);">FURNITURE</div>
+                    <img src="jeweelryint.jpeg" alt="Bespoke Furniture">
                 </div>
                 <div class="service-card-body">
                     <h3>Bespoke Furniture</h3>
@@ -1708,29 +1715,29 @@
             <p class="section-desc">A curated selection of our finest work across Jharkhand.</p>
         </div>
         <div class="portfolio-grid">
-            <div class="portfolio-item reveal" onclick="openLightbox('The Oak Villa','A modern luxury residence in Daltonganj featuring warm oak accents and expansive living spaces.')">
-                <div class="portfolio-img" style="background:linear-gradient(150deg, #e8ddd0, #c4b5a0);">✦</div>
-                <div class="portfolio-overlay"><h4>The Oak Villa</h4><p>Daltonganj</p></div>
+            <div class="portfolio-item reveal" onclick="openLightbox('Living Room','living.jpeg','A modern luxury living space in Daltonganj featuring warm accents and expansive seating.')">
+                <img class="portfolio-img" src="living.jpeg" alt="Living Room">
+                <div class="portfolio-overlay"><h4>Living Room</h4><p>Daltonganj</p></div>
             </div>
-            <div class="portfolio-item reveal" onclick="openLightbox('Zen Garden','Tranquil outdoor retreat in Ranchi with minimalist landscaping and water features.')">
-                <div class="portfolio-img" style="background:linear-gradient(150deg, #dfd5c8, #baad99);">✦</div>
-                <div class="portfolio-overlay"><h4>Zen Garden</h4><p>Ranchi</p></div>
+            <div class="portfolio-item reveal" onclick="openLightbox('Master Bedroom','bedroom.jpeg','A calm and elegant master bedroom retreat with custom furnishings.')">
+                <img class="portfolio-img" src="bedroom.jpeg" alt="Master Bedroom">
+                <div class="portfolio-overlay"><h4>Master Bedroom</h4><p>Daltonganj</p></div>
             </div>
-            <div class="portfolio-item reveal" onclick="openLightbox('Royal Dining','Opulent dining room in Daltonganj with hand-carved furniture and ambient lighting.')">
-                <div class="portfolio-img" style="background:linear-gradient(150deg, #ede3d6, #c9bbaa);">✦</div>
-                <div class="portfolio-overlay"><h4>Royal Dining</h4><p>Daltonganj</p></div>
+            <div class="portfolio-item reveal" onclick="openLightbox('Modular Kitchen','kitchen.jpeg','A sleek, functional modular kitchen designed for everyday luxury.')">
+                <img class="portfolio-img" src="kitchen.jpeg" alt="Modular Kitchen">
+                <div class="portfolio-overlay"><h4>Modular Kitchen</h4><p>Ranchi</p></div>
             </div>
-            <div class="portfolio-item reveal" onclick="openLightbox('Tech Office','Modern workspace in Jharkhand blending functionality with sophisticated design.')">
-                <div class="portfolio-img" style="background:linear-gradient(150deg, #e5dad0, #bfb09c);">✦</div>
-                <div class="portfolio-overlay"><h4>Tech Office</h4><p>Jharkhand</p></div>
+            <div class="portfolio-item reveal" onclick="openLightbox('False Ceiling Design','celling.jpeg','Intricate false ceiling work that elevates the ambience of the room.')">
+                <img class="portfolio-img" src="celling.jpeg" alt="Ceiling Design">
+                <div class="portfolio-overlay"><h4>False Ceiling Design</h4><p>Jharkhand</p></div>
             </div>
-            <div class="portfolio-item reveal" onclick="openLightbox('Sunset Lounge','Cozy evening space in Daltonganj perfect for entertaining guests.')">
-                <div class="portfolio-img" style="background:linear-gradient(150deg, #ece0d4, #c7b8a5);">✦</div>
-                <div class="portfolio-overlay"><h4>Sunset Lounge</h4><p>Daltonganj</p></div>
+            <div class="portfolio-item reveal" onclick="openLightbox('Pooja Room','pooja.jpeg','A serene, beautifully detailed pooja room designed for daily rituals.')">
+                <img class="portfolio-img" src="pooja.jpeg" alt="Pooja Room">
+                <div class="portfolio-overlay"><h4>Pooja Room</h4><p>Daltonganj</p></div>
             </div>
-            <div class="portfolio-item reveal" onclick="openLightbox('Poolside Deck','Resort-style pool area in Deoghar with natural stone finishes.')">
-                <div class="portfolio-img" style="background:linear-gradient(150deg, #e0d5c7, #bbac97);">✦</div>
-                <div class="portfolio-overlay"><h4>Poolside Deck</h4><p>Deoghar</p></div>
+            <div class="portfolio-item reveal" onclick="openLightbox('Jewellery Showroom','jeweelryint.jpeg','A premium commercial jewellery showroom interior with elegant display design.')">
+                <img class="portfolio-img" src="jeweelryint.jpeg" alt="Jewellery Showroom">
+                <div class="portfolio-overlay"><h4>Jewellery Showroom</h4><p>Ranchi</p></div>
             </div>
         </div>
     </section>
@@ -1744,7 +1751,9 @@
     <!-- ═══════════ ABOUT ═══════════ -->
     <section id="about">
         <div class="about-container">
-            <div class="about-image reveal">AR</div>
+            <div class="about-image reveal">
+                <img src="kitchen1.jpeg" alt="AR Decor Studio Work">
+            </div>
             <div class="about-text reveal">
                 <p class="section-tag">Our Legacy</p>
                 <h2 class="section-title">Since <span>2005</span></h2>
@@ -2105,11 +2114,11 @@
         }, 4500);
 
         // ── Lightbox ──────────────────────
-        function openLightbox(title, desc) {
+        function openLightbox(title, imgSrc, desc) {
             document.getElementById('lightboxContent').innerHTML = `
+            <img src="${imgSrc}" alt="${title}">
             <h3 style="color:var(--gold-light);font-family:var(--font-heading);font-size:1.8rem;margin-bottom:1rem;">✨ ${title}</h3>
             <p style="color:rgba(255,255,255,0.8);line-height:1.7;">${desc}</p>
-            <p style="margin-top:2rem;color:var(--text-muted);font-size:0.85rem;">High‑resolution project photography would be displayed here.</p>
           `;
             document.getElementById('lightbox').classList.add('active');
         }
